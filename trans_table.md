@@ -1,8 +1,8 @@
-Here’s a **High-Level Design (HLD)** for your mapping document in **Mermaid** syntax. This visual represents how data is mapped and transformed from source systems (like BMQ/DB2) into the target CBD system, including transformation logic and intermediary staging if needed.
+Here’s a **High-Level Design (HLD)** represents how data is mapped and transformed from source systems (like BMQ/DB2) into the target CBD system, including transformation logic and intermediary staging if needed.
 
 ---
 
-### ✅ **Mermaid HLD Diagram (Text format for GitHub / Markdown)**
+### ✅ **HLD Diagram**
 
 ```mermaid
 flowchart TD
