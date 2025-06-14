@@ -6,27 +6,27 @@ Here’s a **High-Level Design (HLD)** for your mapping document in **Mermaid** 
 
 ```mermaid
 flowchart TD
-    A[Source Systems: BMQ, DB2 Tables] --> B[Raw Data Extract]
-    B --> C[Staging Layer: Sample Data]
+    A[Source Systems: BMQ and DB2 Tables] --> B[Raw Data Extract]
+    B --> C[Staging Layer - Sample Data]
     C --> D{Mapping Rules}
 
-    D --> E1[Direct Field Mapping (e.g., SCHD_MOD_ID)]
-    D --> E2[Derived Fields via SQL Logic]
-    D --> E3[New Fields (Hardcoded)]
+    D --> E1[Direct Field Mapping - example SCHD_MOD_ID]
+    D --> E2[Derived Fields using SQL Logic]
+    D --> E3[New Fields - Hardcoded Values]
 
-    E2 --> F1[CLTQP221_STATESCHD - Quote Side]
-    E2 --> F2[CLTPP221_STATESCHD - Policy Side]
+    E2 --> F1[CLTQP221_STATESCHD - Quote Side Logic]
+    E2 --> F2[CLTPP221_STATESCHD - Policy Side Logic]
 
-    E1 --> G[Target: SCTFL111_SCHEDULE_MOD (CBD Table)]
+    E1 --> G[Target Table SCTFL111_SCHEDULE_MOD]
     E2 --> G
     E3 --> G
 
-    G --> H[CMQ Tables (Downstream Systems)]
+    G --> H[CMQ Tables for Downstream Processing]
 
     subgraph Notes
-        I[Transformation Logic: SQL or Rules]
+        I[SQL Transformation Rules]
         J[Data Quality Validations]
-        K[Metadata, Change Logs]
+        K[Metadata and Change Tracking]
     end
 ```
 
