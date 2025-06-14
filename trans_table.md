@@ -45,12 +45,3 @@ flowchart TD
 
 ---
 
-### 📥 Want this in a downloadable format?
-
-I can:
-
-* Generate a **PNG** or **SVG** image
-* Create a **Word document** with this diagram embedded
-* Provide a **Markdown** file for GitHub documentation
-
-Let me know your preferred format.
