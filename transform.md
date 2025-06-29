@@ -1,5 +1,5 @@
 
-## ✅ **GCP-Based Transformation Architecture: Mapping F1–F4 Phases**
+## ✅ **GCP-Based Transformation Architecture: Mapping **
 
 ---
 
