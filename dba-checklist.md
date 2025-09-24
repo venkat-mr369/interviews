@@ -25,7 +25,7 @@ SHOW FULL PROCESSLIST;
 
 👉 Look for `"Locked"`, `"Sending data"`, `"Copying to tmp table"`.
 
-######### 2. Long / Slow Queries
+###### 2. Long / Slow Queries
 
 ```sql
 SELECT *
@@ -34,7 +34,7 @@ ORDER BY SUM_TIMER_WAIT DESC
 LIMIT 10;
 ```
 
-######### 3. Lock & Deadlocks
+###### 3. Lock & Deadlocks
 
 ```sql
 SHOW ENGINE INNODB STATUS\G;
@@ -42,7 +42,7 @@ SHOW ENGINE INNODB STATUS\G;
 
 👉 Look at **LATEST DETECTED DEADLOCK** section.
 
-######### 4. Index Usage
+###### 4. Index Usage
 
 ```sql
 EXPLAIN ANALYZE SELECT ...;
@@ -54,7 +54,7 @@ EXPLAIN ANALYZE SELECT ...;
 
 ###### 🔵 PostgreSQL Quick Checks
 
-######### 1. Active Sessions
+###### 1. Active Sessions
 
 ```sql
 SELECT pid, usename, state, wait_event_type, wait_event, query
@@ -62,7 +62,7 @@ FROM pg_stat_activity
 WHERE state != 'idle';
 ```
 
-######### 2. Long Running Queries
+###### 2. Long Running Queries
 
 ```sql
 SELECT pid, now() - query_start AS duration, query
@@ -71,7 +71,7 @@ WHERE state = 'active'
 ORDER BY duration DESC;
 ```
 
-######### 3. Blocking Sessions
+###### 3. Blocking Sessions
 
 ```sql
 SELECT blocked_locks.pid AS blocked_pid,
@@ -85,7 +85,7 @@ JOIN pg_stat_activity blocking_activity ON blocking_activity.pid = blocking_lock
 WHERE NOT blocked_locks.granted;
 ```
 
-######### 4. Expensive Queries (needs `pg_stat_statements`)
+###### 4. Expensive Queries (needs `pg_stat_statements`)
 
 ```sql
 SELECT query, total_exec_time, calls
@@ -98,7 +98,7 @@ LIMIT 10;
 
 ###### 🟣 SQL Server Quick Checks
 
-######### 1. Active Requests
+###### 1. Active Requests
 
 ```sql
 SELECT session_id, status, blocking_session_id, wait_type, wait_time, text
@@ -107,7 +107,7 @@ CROSS APPLY sys.dm_exec_sql_text(r.sql_handle)
 WHERE session_id > 50;
 ```
 
-######### 2. Blocking Queries
+###### 2. Blocking Queries
 
 ```sql
 SELECT blocking_session_id AS blocker, session_id AS blocked, wait_type, text
@@ -116,7 +116,7 @@ CROSS APPLY sys.dm_exec_sql_text(r.sql_handle)
 WHERE blocking_session_id <> 0;
 ```
 
-######### 3. Top CPU Queries
+###### 3. Top CPU Queries
 
 ```sql
 SELECT TOP 10
@@ -133,7 +133,7 @@ CROSS APPLY sys.dm_exec_sql_text(qs.sql_handle) as qt
 ORDER BY total_worker_time DESC;
 ```
 
-######### 4. Wait Stats (system-wide health)
+###### 4. Wait Stats (system-wide health)
 
 ```sql
 SELECT wait_type, wait_time_ms, waiting_tasks_count
