@@ -1,4 +1,4 @@
-**slow**, one of the first suspects is the **database layer**. 
+**Slow**, one of the first suspects is the **database propective**. 
 
 
 
