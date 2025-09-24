@@ -4,11 +4,11 @@
 
 ---
 
-# 🔎 Deep Dive: Checking Application Slowness from Database Side
+#### 🔎 Deep Dive: Checking Application Slowness from Database Side
 
 ---
 
-## 1️⃣ Common First Steps (All Databases)
+#### 1️⃣ Common First Steps (All Databases)
 
 Before going DB-specific:
 
@@ -19,7 +19,7 @@ Before going DB-specific:
 
 ---
 
-## 2️⃣ MySQL Deep Dive
+#### 2️⃣ MySQL Deep Dive
 
 ### Step 1: Check Active Queries
 
