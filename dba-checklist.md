@@ -7,7 +7,7 @@
 
 ---
 
-###### 🔎 Step 0: Universal Pre-Checks (All DBs)
+#### 🔎 Step 0: Universal Pre-Checks (All DBs)
 
 * ✅ Check **server health** (CPU, Memory, Disk, I/O).
 * ✅ Confirm **network latency** between app & DB.
@@ -15,9 +15,9 @@
 
 ---
 
-###### 🟢 MySQL Quick Checks
+#### 🟢 MySQL Quick Checks
 
-######### 1. Active Queries
+##### 1. Active Queries
 
 ```sql
 SHOW FULL PROCESSLIST;
