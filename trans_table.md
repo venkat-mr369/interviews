@@ -1,4 +1,4 @@
-Here’s a **High-Level Design (HLD)** represents how data is mapped and transformed from source systems (like BMQ/DB2) into the target CBD system, including transformation logic and intermediary staging if needed.
+**High-Level Design (HLD)** represents how data is mapped and transformed from source systems (like BMQ/DB2) into the target CBD system, including transformation logic and intermediary staging if needed.
 
 ---
 
