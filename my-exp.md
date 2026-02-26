@@ -339,7 +339,7 @@ SHOW STATS;       -- query rates
 
 ---
 
-## ADVANCED LEVEL
+### ADVANCED LEVEL
 
 ---
 
