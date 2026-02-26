@@ -27,13 +27,13 @@ Complete diagnostic flowchart, cross-database quick reference card, emergency ki
 
 ---
 
-# 📋 STEP 0: UNIVERSAL PRE-CHECKS (ALL DATABASES)
+### 📋 STEP 0: UNIVERSAL PRE-CHECKS (ALL DATABASES)
 
 Before touching any database, rule out infrastructure-level causes first. Most "slow database" reports are actually slow networks, starved CPUs, or saturated disks.
 
 ---
 
-## 0.1 — CPU Check
+### 0.1 — CPU Check
 
 ```bash
 # Linux
@@ -59,7 +59,7 @@ sar -u 1 5              # historical CPU trend
 
 ---
 
-## 0.2 — Memory Check
+### 0.2 — Memory Check
 
 ```bash
 free -h                 # available memory, swap usage
@@ -84,7 +84,7 @@ done | sort -t: -k2 -rn | head -10
 
 ---
 
-## 0.3 — Disk I/O Check
+### 0.3 — Disk I/O Check
 
 ```bash
 iostat -xz 1 5          # per-device extended I/O stats
@@ -112,7 +112,7 @@ find /var/log -size +100M -mtime -1 -ls 2>/dev/null
 
 ---
 
-## 0.4 — Network Latency Check
+### 0.4 — Network Latency Check
 
 ```bash
 # Latency between app server and DB server
@@ -145,7 +145,7 @@ netstat -s | grep -E "retransmit|failed|error"
 
 ---
 
-## 0.5 — App Response Time vs DB Execution Time
+### 0.5 — App Response Time vs DB Execution Time
 
 This is the most important diagnostic split. It tells you WHERE the slowness lives.
 
@@ -182,11 +182,11 @@ SET STATISTICS TIME OFF;
 
 ---
 
-# 🟢 SECTION 1: MYSQL — IN-DEPTH TROUBLESHOOTING
+### 🟢 SECTION 1: MYSQL — IN-DEPTH TROUBLESHOOTING
 
 ---
 
-## 1.1 — Active Queries & Process List
+### 1.1 — Active Queries & Process List
 
 ```sql
 -- Full process list with all query text
