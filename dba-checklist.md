@@ -1,4 +1,4 @@
-**in-depth DBA Troubleshooting Playbook** 
+**In-depth DBA Troubleshooting Playbook** 
 ---
 **Step 0 — Universal Pre-Checks**
 CPU (per-core, iowait, steal %), Memory (swap detection, which process is swapping), Disk I/O (iostat column-by-column reference), Network latency (with thresholds), App vs DB time split methodology
@@ -15,7 +15,7 @@ Full blocking tree with recursive CTE, top CPU/physical reads queries with plan 
 **Section 4 — Root Cause Decision Tree**
 Complete diagnostic flowchart, cross-database quick reference card, emergency kill protocol for all 3 databases, post-incident tuning checklist
 ===
-# 🚨 DBA Troubleshooting Playbook — In-Depth Analysis
+### 🚨 DBA Troubleshooting Playbook 
 ### Application Slowness | MySQL • PostgreSQL • SQL Server
 #### Full Command Reference + Interpretation + Root Cause + Fix
 
