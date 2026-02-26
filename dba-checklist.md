@@ -14,7 +14,7 @@ Full blocking tree with recursive CTE, top CPU/physical reads queries with plan 
 
 **Section 4 — Root Cause Decision Tree**
 Complete diagnostic flowchart, cross-database quick reference card, emergency kill protocol for all 3 databases, post-incident tuning checklist
-===
+
 ### 🚨 DBA Troubleshooting Playbook 
 ### Application Slowness | MySQL • PostgreSQL • SQL Server
 #### Full Command Reference + Interpretation + Root Cause + Fix
