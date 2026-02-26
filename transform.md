@@ -1,5 +1,5 @@
 
-### ✅ **GCP-Based Transformation Architecture: Mapping **
+### ✅ GCP-Based Transformation Architecture: Mapping
 
 ---
 
