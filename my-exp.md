@@ -1038,7 +1038,7 @@ kubectl rollout undo statefulset/postgres -n prod
 
 ---
 
-# SECTION 5: CI/CD PIPELINE & DATABASE AUTOMATION
+### SECTION 5: CI/CD PIPELINE & DATABASE AUTOMATION
 
 ---
 
@@ -1099,7 +1099,7 @@ deploy-prod:
 
 ---
 
-# SECTION 6: FLYWAY & LIQUIBASE
+### SECTION 6: FLYWAY & LIQUIBASE
 
 ---
 
@@ -1164,7 +1164,7 @@ databaseChangeLog:
 
 ---
 
-# SECTION 7: TERRAFORM & IaC FOR DATABASES
+### SECTION 7: TERRAFORM & IaC FOR DATABASES
 
 ---
 
@@ -1277,11 +1277,11 @@ resource "aws_db_instance" "mysql" {
 
 ---
 
-# SECTION 8: PERFORMANCE TUNING — DEEP DIVE
+### SECTION 8: PERFORMANCE TUNING 
 
 ---
 
-## PostgreSQL Performance Tuning
+### PostgreSQL Performance Tuning
 
 ---
 
@@ -1398,7 +1398,7 @@ ALTER INDEX idx_orders_customer_id_new RENAME TO idx_orders_customer_id;
 
 ---
 
-## MySQL Performance Tuning
+### MySQL Performance Tuning
 
 ---
 
@@ -1522,7 +1522,7 @@ SHOW STATUS LIKE 'Innodb_buffer_pool_wait_free';
 
 ---
 
-# SECTION 9: SCENARIO-BASED QUESTIONS
+### SECTION 9: SCENARIO-BASED QUESTIONS
 
 ---
 
@@ -1721,7 +1721,7 @@ resources:
 
 ---
 
-# SECTION 10: REAL ISSUE-BASED TROUBLESHOOTING
+### SECTION 10: REAL ISSUE-BASED TROUBLESHOOTING
 
 ---
 
@@ -1932,7 +1932,7 @@ data "aws_db_instance" "legacy_postgres" {
 
 ---
 
-## BONUS: Advanced Performance Tuning Checklist
+### Advanced Performance Tuning Checklist
 
 ---
 
