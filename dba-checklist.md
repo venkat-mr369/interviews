@@ -1,4 +1,4 @@
-**In-depth DBA Troubleshooting Playbook** 
+### **In-depth DBA Troubleshooting Playbook** 
 ---
 **Step 0 — Universal Pre-Checks**
 CPU (per-core, iowait, steal %), Memory (swap detection, which process is swapping), Disk I/O (iostat column-by-column reference), Network latency (with thresholds), App vs DB time split methodology
