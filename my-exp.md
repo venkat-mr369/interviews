@@ -1,9 +1,9 @@
-# Senior DBA & Multi-Cloud DBA — Deep-Dive Interview Questions & Answers
+## Senior DBA & Multi-Cloud DBA — Deep-Dive Interview Questions & Answers
 ### 15 Years Experience | Basic → Advanced | Scenario-Based | Issue-Based | Performance Tuning
 
 ---
 
-# TABLE OF CONTENTS
+### TABLE OF CONTENTS
 1. PostgreSQL Administration
 2. MySQL & MariaDB Administration
 3. Multi-Database Management (Cassandra, CockroachDB, Aurora, MSSQL)
@@ -17,11 +17,11 @@
 
 ---
 
-# SECTION 1: POSTGRESQL ADMINISTRATION
+### SECTION 1: POSTGRESQL ADMINISTRATION
 
 ---
 
-## BASIC LEVEL
+### BASIC LEVEL
 
 ---
 
@@ -170,7 +170,7 @@ SELECT * FROM pg_stat_wal_receiver;
 
 ---
 
-## INTERMEDIATE LEVEL
+### INTERMEDIATE LEVEL
 
 ---
 
@@ -434,11 +434,11 @@ SELECT pg_switch_wal();  -- on primary
 
 ---
 
-# SECTION 2: MYSQL & MARIADB ADMINISTRATION
+### SECTION 2: MYSQL & MARIADB ADMINISTRATION
 
 ---
 
-## BASIC LEVEL
+### BASIC LEVEL
 
 ---
 
@@ -528,7 +528,7 @@ ALTER USER 'appuser'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
 
 ---
 
-## INTERMEDIATE LEVEL
+### INTERMEDIATE LEVEL
 
 ---
 
