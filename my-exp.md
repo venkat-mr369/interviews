@@ -702,11 +702,11 @@ INNER JOIN information_schema.innodb_trx r ON r.trx_id = w.requesting_trx_id;
 
 ---
 
-# SECTION 3: MULTI-DATABASE MANAGEMENT
+### SECTION 3: MULTI-DATABASE MANAGEMENT
 
 ---
 
-## CASSANDRA
+### CASSANDRA
 
 ---
 
@@ -773,7 +773,7 @@ nodetool compactionhistory
 
 ---
 
-## AWS RDS AURORA
+### AWS RDS AURORA
 
 ---
 
@@ -809,7 +809,7 @@ aws rds backtrack-db-cluster \
 
 ---
 
-## TDE (TRANSPARENT DATA ENCRYPTION)
+### TDE (TRANSPARENT DATA ENCRYPTION)
 
 ---
 
@@ -870,7 +870,7 @@ SELECT name, is_encrypted FROM sys.databases;
 
 ---
 
-# SECTION 4: KUBERNETES & DATABASE MANAGEMENT
+### SECTION 4: KUBERNETES & DATABASE MANAGEMENT
 
 ---
 
