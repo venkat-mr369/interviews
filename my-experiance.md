@@ -660,7 +660,7 @@ chown -R mysql:mysql /var/lib/mysql
 
 ---
 
-## ADVANCED LEVEL
+### ADVANCED LEVEL
 
 ---
 
@@ -1932,7 +1932,7 @@ data "aws_db_instance" "legacy_postgres" {
 
 ---
 
-### Advanced Performance Tuning Checklist
+### Advanced Performance Tuning 
 
 ---
 
@@ -1990,5 +1990,3 @@ LAYER 6 — MONITORING
 
 ---
 
-*Document prepared for: Y. Venkat Sarath — Sr DBA & Multi Cloud DBA*
-*Experience: 15 Years | Coverage: PostgreSQL, MySQL, MariaDB, Cassandra, Aurora, MSSQL, Kubernetes, Terraform, CI/CD, Flyway, Liquibase*
