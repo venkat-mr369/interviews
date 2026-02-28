@@ -69,7 +69,7 @@ ps aux --sort=-%cpu | head -15
 
 ---
 
-## 0.2 — Memory Analysis
+### 0.2 — Memory Analysis
 
 ```bash
 # Overview
@@ -102,7 +102,7 @@ done | sort -t: -k2 -rn | head -10
 
 ---
 
-## 0.3 — Disk I/O Analysis
+### 0.3 — Disk I/O Analysis
 
 ```bash
 # Per-device I/O statistics (refresh every 1 second, 5 times)
@@ -136,7 +136,7 @@ find /var/lib/mysql /var/lib/postgresql /var/opt/mssql -size +1G -ls 2>/dev/null
 
 ---
 
-## 0.4 — Network Latency Check
+### 0.4 — Network Latency Check
 
 ```bash
 # Baseline round-trip time (run from app server to DB server)
@@ -171,7 +171,7 @@ ip -s link show eth0 | grep -A2 "RX\|TX"
 
 ---
 
-## 0.5 — App Response Time vs DB Execution Time Split
+### 0.5 — App Response Time vs DB Execution Time Split
 
 This single comparison tells you where to focus your investigation. Do not skip it.
 
@@ -219,11 +219,11 @@ Scenario C:
 
 ---
 
-# 🟢 SECTION 1: MYSQL — IN-DEPTH INVESTIGATION
+### 🟢 SECTION 1: MYSQL — IN-DEPTH INVESTIGATION
 
 ---
 
-## Overview: MySQL Slowness Categories
+### Overview: MySQL Slowness Categories
 
 ```
 MySQL Slow Application
@@ -238,7 +238,7 @@ MySQL Slow Application
 
 ---
 
-## 1.1 — Check Active Queries & Process List
+### 1.1 — Check Active Queries & Process List
 
 ```sql
 -- Full process list (every active database connection)
@@ -298,7 +298,7 @@ ORDER BY time DESC;
 
 ---
 
-## 1.2 — Slow Query Log — Enable & Analyze
+### 1.2 — Slow Query Log — Enable & Analyze
 
 ```ini
 # Add to /etc/mysql/mysql.conf.d/mysqld.cnf and restart (or use SET GLOBAL)
@@ -336,7 +336,7 @@ mysqldumpslow -s c -t 10 /var/log/mysql/slow.log    # top 10 by call count
 
 ---
 
-## 1.3 — Performance Schema — Deep Query Analysis
+### 1.3 — Performance Schema — Deep Query Analysis
 
 ```sql
 -- Top 10 slowest query patterns (aggregated by digest/fingerprint)
@@ -398,7 +398,7 @@ LIMIT 10;
 
 ---
 
-## 1.4 — Lock Contention & Deadlock Analysis
+### 1.4 — Lock Contention & Deadlock Analysis
 
 ```sql
 -- Current InnoDB row lock waits (who is waiting and who is blocking)
@@ -465,7 +465,7 @@ SET GLOBAL innodb_print_all_deadlocks = ON;
 
 ---
 
-## 1.5 — EXPLAIN & Index Analysis
+### 1.5 — EXPLAIN & Index Analysis
 
 ```sql
 -- Standard EXPLAIN (shows query execution plan)
@@ -519,7 +519,7 @@ ANALYZE TABLE customers;
 
 ---
 
-## 1.6 — InnoDB Buffer Pool & System Health
+### 1.6 — InnoDB Buffer Pool & System Health
 
 ```sql
 -- Buffer pool hit ratio (the most important single MySQL metric)
@@ -569,7 +569,7 @@ SELECT
 
 ---
 
-## 1.7 — Replication Lag (When Reads Go to a Replica)
+### 1.7 — Replication Lag (When Reads Go to a Replica)
 
 ```sql
 -- Check replication health and lag
@@ -596,13 +596,13 @@ START REPLICA SQL_THREAD;
 
 ---
 
-# 🔵 SECTION 2: MARIADB — IN-DEPTH INVESTIGATION
+### 🔵 SECTION 2: MARIADB — IN-DEPTH INVESTIGATION
 
 MariaDB shares the MySQL foundation but has distinct tools and features. Key differences are highlighted throughout.
 
 ---
 
-## Overview: MariaDB-Specific Considerations
+### Overview: MariaDB-Specific Considerations
 
 ```
 MariaDB vs MySQL — Key Diagnostic Differences:
@@ -615,7 +615,7 @@ MariaDB vs MySQL — Key Diagnostic Differences:
 
 ---
 
-## 2.1 — Active Queries & Process List
+### 2.1 — Active Queries & Process List
 
 ```sql
 -- Full process list
@@ -638,7 +638,7 @@ SHOW STATUS LIKE 'threadpool%';
 
 ---
 
-## 2.2 — Slow Query Log (MariaDB)
+### 2.2 — Slow Query Log (MariaDB)
 
 ```sql
 -- Enable via SET GLOBAL (no restart needed)
@@ -664,7 +664,7 @@ pt-query-digest /var/lib/mysql/slow.log --limit=10 --order-by Query_time:sum
 
 ---
 
-## 2.3 — Performance Schema & MariaDB Specific Views
+### 2.3 — Performance Schema & MariaDB Specific Views
 
 ```sql
 -- Top slow queries (same as MySQL but MariaDB has this view built-in from 10.0)
@@ -696,7 +696,7 @@ ANALYZE TABLE orders PERSISTENT FOR ALL;
 
 ---
 
-## 2.4 — Galera Cluster Health (if using MariaDB Galera Cluster)
+### 2.4 — Galera Cluster Health (if using MariaDB Galera Cluster)
 
 ```sql
 -- Core Galera health check — run on every node
@@ -732,7 +732,7 @@ SHOW STATUS LIKE 'wsrep_local_recv_queue%';
 
 ---
 
-## 2.5 — MaxScale (MariaDB Connection Router/Load Balancer)
+### 2.5 — MaxScale (MariaDB Connection Router/Load Balancer)
 
 ```bash
 # If MaxScale is deployed as read/write splitter:
@@ -757,11 +757,11 @@ maxctrl show maxscale | grep -i "query classification time"
 
 ---
 
-# 🟡 SECTION 3: POSTGRESQL — IN-DEPTH INVESTIGATION
+### 🟡 SECTION 3: POSTGRESQL — IN-DEPTH INVESTIGATION
 
 ---
 
-## Overview: PostgreSQL Slowness Categories
+### Overview: PostgreSQL Slowness Categories
 
 ```
 PostgreSQL Slow Application
@@ -776,7 +776,7 @@ PostgreSQL Slow Application
 
 ---
 
-## 3.1 — Active Sessions & Wait Events
+### 3.1 — Active Sessions & Wait Events
 
 ```sql
 -- Complete picture of all non-idle sessions
@@ -832,7 +832,7 @@ ORDER BY sessions_waiting DESC;
 
 ---
 
-## 3.2 — Long Running Queries & Safe Termination
+### 3.2 — Long Running Queries & Safe Termination
 
 ```sql
 -- All actively running queries sorted by duration
@@ -897,7 +897,7 @@ idle_in_transaction_session_timeout  = '5min'    -- Kill abandoned transactions
 
 ---
 
-## 3.3 — Blocking Chain Analysis
+### 3.3 — Blocking Chain Analysis
 
 ```sql
 -- Standard blocking detection (which query is blocking which)
@@ -951,7 +951,7 @@ ORDER BY running_for DESC NULLS LAST;
 
 ---
 
-## 3.4 — pg_stat_statements — Query Performance Analysis
+### 3.4 — pg_stat_statements — Query Performance Analysis
 
 ```sql
 -- Verify extension is available
@@ -1012,7 +1012,7 @@ SELECT pg_stat_statements_reset();
 
 ---
 
-## 3.5 — EXPLAIN ANALYZE — Reading the Query Plan
+### 3.5 — EXPLAIN ANALYZE — Reading the Query Plan
 
 ```sql
 -- Full diagnostic EXPLAIN (always use BUFFERS to see disk vs cache)
@@ -1057,7 +1057,7 @@ ORDER BY seq_scan DESC;
 
 ---
 
-## 3.6 — Autovacuum & Table Bloat
+### 3.6 — Autovacuum & Table Bloat
 
 ```sql
 -- Tables with dead tuple buildup (bloat candidates)
@@ -1107,7 +1107,7 @@ VACUUM VERBOSE ANALYZE orders;
 
 ---
 
-## 3.7 — Cache Hit Ratio & I/O Health
+### 3.7 — Cache Hit Ratio & I/O Health
 
 ```sql
 -- Database-level cache hit ratio
@@ -1158,11 +1158,11 @@ FROM pg_stat_bgwriter;
 
 ---
 
-# 🟣 SECTION 4: SQL SERVER — IN-DEPTH INVESTIGATION
+### 🟣 SECTION 4: SQL SERVER — IN-DEPTH INVESTIGATION
 
 ---
 
-## Overview: SQL Server Slowness Categories
+### Overview: SQL Server Slowness Categories
 
 ```
 SQL Server Slow Application
@@ -1177,7 +1177,7 @@ SQL Server Slow Application
 
 ---
 
-## 4.1 — Active Requests & Session Overview
+### 4.1 — Active Requests & Session Overview
 
 ```sql
 -- Complete picture of all active database requests
@@ -1220,7 +1220,7 @@ ORDER BY r.total_elapsed_time DESC;
 
 ---
 
-## 4.2 — Blocking Chains — Complete Analysis
+### 4.2 — Blocking Chains — Complete Analysis
 
 ```sql
 -- Full blocking picture: who blocks whom
@@ -1277,7 +1277,7 @@ KILL <root_blocker_session_id>;
 
 ---
 
-## 4.3 — Deadlock Detection & Analysis
+### 4.3 — Deadlock Detection & Analysis
 
 ```sql
 -- Enable system health trace to capture deadlocks (already on by default in modern SQL Server)
@@ -1305,7 +1305,7 @@ DBCC TRACESTATUS(-1);
 
 ---
 
-## 4.4 — Top Resource-Consuming Queries
+### 4.4 — Top Resource-Consuming Queries
 
 ```sql
 -- Top 10 by total CPU (cumulative cost — fix these for biggest impact)
@@ -1347,7 +1347,7 @@ ORDER BY qs.total_physical_reads DESC;
 
 ---
 
-## 4.5 — Wait Stats — The Most Powerful SQL Server Diagnostic
+### 4.5 — Wait Stats — The Most Powerful SQL Server Diagnostic
 
 ```sql
 -- System-wide wait statistics (exclude benign system waits)
@@ -1399,7 +1399,7 @@ DBCC SQLPERF('sys.dm_os_wait_stats', CLEAR);
 
 ---
 
-## 4.6 — Missing & Fragmented Index Analysis
+### 4.6 — Missing & Fragmented Index Analysis
 
 ```sql
 -- Top missing indexes by estimated impact (do NOT just create all of them — review first)
@@ -1458,7 +1458,7 @@ ALTER INDEX [IX_orders_customer_id] ON dbo.orders REORGANIZE;
 
 ---
 
-## 4.7 — Memory Analysis
+### 4.7 — Memory Analysis
 
 ```sql
 -- SQL Server memory configuration and usage
@@ -1505,7 +1505,7 @@ FROM sys.dm_exec_cached_plans;
 
 ---
 
-## 4.8 — TempDB & Transaction Log Health
+### 4.8 — TempDB & Transaction Log Health
 
 ```sql
 -- TempDB space usage (high = sort/hash spills or temp table explosion)
@@ -1554,7 +1554,7 @@ ORDER BY size DESC;
 
 ---
 
-# 🚦 SECTION 5: ROOT CAUSE DECISION TREE & QUICK REFERENCE
+### 🚦 SECTION 5: ROOT CAUSE Analysis
 
 ---
 
@@ -1638,7 +1638,7 @@ APPLICATION REPORTED SLOW
 
 ---
 
-## 5.2 — Cross-Database Quick Reference Card
+### 5.2 — Cross-Database Quick Reference Card
 
 | Symptom | MySQL | MariaDB | PostgreSQL | SQL Server |
 |---------|-------|---------|------------|------------|
@@ -1656,7 +1656,7 @@ APPLICATION REPORTED SLOW
 
 ---
 
-## 5.3 — Emergency Response Cheat Sheet
+### 5.3 — Emergency Response Cheat Sheet
 
 ```sql
 -- ═══════════════════════════════════════════════════════
@@ -1733,5 +1733,3 @@ After resolving the incident:
 
 ---
 
-*Playbook | Sr DBA & Multi-Cloud DBA — Y. Venkat Sarath*
-*Covers: MySQL 5.7–8.0 | MariaDB 10.x + Galera | PostgreSQL 12–16 | SQL Server 2016–2022*
