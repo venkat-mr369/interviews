@@ -239,7 +239,7 @@ ORDER BY time DESC;
 
 ---
 
-## 1.2 — Slow Queries via Performance Schema
+### 1.2 — Slow Queries via Performance Schema
 
 ```sql
 -- Top 10 slowest query digests (all time)
@@ -294,7 +294,7 @@ LIMIT 10;
 
 ---
 
-## 1.3 — Locks & Deadlocks — Deep Analysis
+### 1.3 — Locks & Deadlocks — Deep Analysis
 
 ```sql
 -- Current InnoDB lock waits
@@ -404,7 +404,7 @@ ORDER BY no_index_used_count DESC LIMIT 10;
 
 ---
 
-## 1.5 — Buffer Pool & Memory Analysis
+### 1.5 — Buffer Pool & Memory Analysis
 
 ```sql
 -- Buffer pool hit ratio (target: > 99%)
@@ -437,7 +437,7 @@ SHOW STATUS LIKE 'Created_tmp_tables';
 
 ---
 
-## 1.6 — MySQL Replication Lag (if using replicas for reads)
+### 1.6 — MySQL Replication Lag (if using replicas for reads)
 
 ```sql
 -- Check replica lag
@@ -461,11 +461,11 @@ START REPLICA SQL_THREAD;
 
 ---
 
-# 🔵 SECTION 2: POSTGRESQL — IN-DEPTH TROUBLESHOOTING
+### 🔵 SECTION 2: POSTGRESQL — IN-DEPTH TROUBLESHOOTING
 
 ---
 
-## 2.1 — Active Sessions & Wait Events
+### 2.1 — Active Sessions & Wait Events
 
 ```sql
 -- All non-idle sessions with wait events
@@ -514,7 +514,7 @@ ORDER BY waiting_sessions DESC;
 
 ---
 
-## 2.2 — Long Running Queries — Kill Protocol
+### 2.2 — Long Running Queries — Kill Protocol
 
 ```sql
 -- All queries running longer than 30 seconds
@@ -551,7 +551,7 @@ WHERE pid = 12345;
 
 ---
 
-## 2.3 — Blocking Chains — Full Dependency Tree
+### 2.3 — Blocking Chains — Full Dependency Tree
 
 ```sql
 -- Full blocking chain with recursive CTE (PG13+)
@@ -623,7 +623,7 @@ ORDER BY query_start;
 
 ---
 
-## 2.4 — pg_stat_statements — Query Performance Analysis
+### 2.4 — pg_stat_statements — Query Performance Analysis
 
 ```sql
 -- Ensure extension is enabled
@@ -676,7 +676,7 @@ SELECT pg_stat_statements_reset();
 
 ---
 
-## 2.5 — Autovacuum & Table Bloat
+### 2.5 — Autovacuum & Table Bloat
 
 ```sql
 -- Tables with high dead tuple count (bloat candidates)
@@ -721,7 +721,7 @@ ORDER BY age(datfrozenxid) DESC;
 
 ---
 
-## 2.6 — Cache Hit Ratio & Buffer Analysis
+### 2.6 — Cache Hit Ratio & Buffer Analysis
 
 ```sql
 -- Database-level cache hit ratio
@@ -767,7 +767,7 @@ FROM pg_stat_bgwriter;
 
 ---
 
-## 2.7 — EXPLAIN ANALYZE — Reading the Plan
+### 2.7 — EXPLAIN ANALYZE — Reading the Plan
 
 ```sql
 -- Gold standard EXPLAIN: shows actual rows, buffers, timing
@@ -814,11 +814,11 @@ ORDER BY seq_tup_read DESC;
 
 ---
 
-# 🟣 SECTION 3: SQL SERVER — IN-DEPTH TROUBLESHOOTING
+### 🟣 SECTION 3: SQL SERVER — IN-DEPTH TROUBLESHOOTING
 
 ---
 
-## 3.1 — Active Requests & Session State
+### 3.1 — Active Requests & Session State
 
 ```sql
 -- All active requests with complete context
@@ -923,7 +923,7 @@ DBCC INPUTBUFFER(<<root_blocker_session_id>>);
 
 ---
 
-## 3.3 — Top CPU Queries — Full Breakdown
+### 3.3 — Top CPU Queries — Full Breakdown
 
 ```sql
 -- Top 10 queries by total CPU (cumulative cost)
@@ -966,7 +966,7 @@ ORDER BY total_physical_reads DESC;
 
 ---
 
-## 3.4 — Wait Stats — System-Wide Health Diagnosis
+### 3.4 — Wait Stats — System-Wide Health Diagnosis
 
 ```sql
 -- Current waits (live snapshot)
@@ -1010,7 +1010,7 @@ ORDER BY wait_time_ms DESC;
 
 ---
 
-## 3.5 — Missing Index Analysis
+### 3.5 — Missing Index Analysis
 
 ```sql
 -- Top missing indexes by estimated impact
@@ -1068,7 +1068,7 @@ ORDER BY ius.user_updates DESC;
 
 ---
 
-## 3.6 — Memory — Buffer Pool Analysis
+### 3.6 — Memory — Buffer Pool Analysis
 
 ```sql
 -- Buffer pool usage by database
@@ -1115,7 +1115,7 @@ ORDER BY cache_size_mb DESC;
 
 ---
 
-## 3.7 — Transaction Log & Tempdb Analysis
+### 3.7 — Transaction Log & Tempdb Analysis
 
 ```sql
 -- Transaction log usage (high log = long open transactions or bulk operations)
@@ -1168,11 +1168,11 @@ ORDER BY tempdb_used_mb DESC;
 
 ---
 
-# 🚦 SECTION 4: ROOT CAUSE DECISION TREE
+### 🚦 SECTION 4: ROOT CAUSE DECISION TREE
 
 ---
 
-## 4.1 — Complete Diagnostic Flow
+### 4.1 — Complete Diagnostic Flow
 
 ```
 APPLICATION REPORTED SLOW
@@ -1228,7 +1228,7 @@ APPLICATION REPORTED SLOW
 
 ---
 
-## 4.2 — Root Cause Quick Reference Card
+### 4.2 — Root Cause Quick Reference Card
 
 | Symptom | MySQL Check | PostgreSQL Check | SQL Server Check |
 |---|---|---|---|
@@ -1244,7 +1244,7 @@ APPLICATION REPORTED SLOW
 
 ---
 
-## 4.3 — Emergency Kill & Stabilize Protocol
+### 4.3 — Emergency Kill & Stabilize Protocol
 
 ```sql
 -- === MYSQL EMERGENCY ===
@@ -1274,7 +1274,7 @@ GROUP BY blocking_session_id ORDER BY blocked_count DESC;
 
 ---
 
-## 4.4 — Post-Incident Tuning Checklist
+### 4.4 — Post-Incident Tuning Checklist
 
 ```
 AFTER THE INCIDENT IS RESOLVED:
@@ -1295,5 +1295,4 @@ AFTER THE INCIDENT IS RESOLVED:
 
 ---
 
-*Playbook Version: 2024 | Maintained by: Y. Venkat Sarath | Sr DBA & Multi-Cloud DBA*
-*Covers: MySQL 5.7–8.0 | PostgreSQL 12–16 | SQL Server 2016–2022*
+
