@@ -1,11 +1,11 @@
-# Oracle DBA Deep Interview Questions & Answers
-## Covering: Oracle Versions | RMAN | Data Pump (expdp/impdp) | Performance Tuning | RAC | Troubleshooting
+### Oracle DBA Deep Interview Questions & Solutions
+### Covering: Oracle Versions | RMAN | Data Pump (expdp/impdp) | Performance Tuning | RAC | Troubleshooting
 
 ---
 
-# SECTION 1: ORACLE CORE & VERSIONS
+### SECTION 1: ORACLE CORE & VERSIONS
 
-## Oracle Architecture & Version History
+### Oracle Architecture & Version History
 
 ### Q1. What are the key architectural differences between Oracle 11g, 12c, 18c, 19c, 21c, and 23c?
 
