@@ -91,52 +91,55 @@ resource "google_compute_instance" "mysql_vm" {
   }
 
   metadata_startup_script = <<-EOF
-    #!/bin/bash
-    set -e
-    exec > /var/log/startup-mysql.log 2>&1
+  #!/bin/bash
+  exec > /var/log/startup-mysql.log 2>&1
+  set -xe    # -x prints each command, -e stops on error
 
-    echo ">>> Updating system..."
-    dnf update -y
+  echo ">>> Step 1: Update system"
+  dnf update -y
 
-    echo ">>> Adding MySQL 8 community repo..."
-    dnf install -y https://dev.mysql.com/get/mysql80-community-release-el9-5.noarch.rpm
+  echo ">>> Step 2: Install MySQL repo"
+  dnf install -y https://dev.mysql.com/get/mysql80-community-release-el9-5.noarch.rpm
+  dnf repolist | grep mysql
 
-    echo ">>> Installing MySQL 8..."
-    dnf install -y mysql-community-server
+  echo ">>> Step 3: Install MySQL"
+  dnf install -y mysql-community-server
 
-    echo ">>> Starting MySQL..."
-    systemctl enable mysqld
-    systemctl start mysqld
+  echo ">>> Step 4: Start MySQL"
+  systemctl enable mysqld
+  systemctl start mysqld
 
-    echo ">>> Getting temp root password..."
-    TEMP_PASS=$(grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}')
+  echo ">>> Step 5: Wait for MySQL to be ready"
+  sleep 20
 
-    echo ">>> Setting new root password..."
-    mysql --connect-expired-password -uroot -p"$TEMP_PASS" <<MYSQL_SCRIPT
-    ALTER USER 'root'@'localhost' IDENTIFIED BY '${var.mysql_root_password}';
-    CREATE DATABASE IF NOT EXISTS ams_db;
-    CREATE USER IF NOT EXISTS 'ams_user'@'%' IDENTIFIED BY '${var.mysql_root_password}';
-    GRANT ALL PRIVILEGES ON ams_db.* TO 'ams_user'@'%';
-    FLUSH PRIVILEGES;
-MYSQL_SCRIPT
+  echo ">>> Step 6: Get temp password"
+  TEMP_PASS=$(grep 'temporary password' /var/log/mysqld.log | awk '{print $NF}')
+  echo "Temp pass found: $TEMP_PASS"
 
-    echo ">>> Configuring MySQL to accept remote connections..."
-    sed -i 's/^bind-address.*/bind-address = 0.0.0.0/' /etc/my.cnf
-    systemctl restart mysqld
+  echo ">>> Step 7: Set new password"
+  mysql --connect-expired-password -uroot -p"$TEMP_PASS" <<MYSQL
+  ALTER USER 'root'@'localhost' IDENTIFIED BY '${var.mysql_root_password}';
+  CREATE DATABASE IF NOT EXISTS ams_db;
+  CREATE USER IF NOT EXISTS 'ams_user'@'%' IDENTIFIED BY '${var.mysql_root_password}';
+  GRANT ALL PRIVILEGES ON ams_db.* TO 'ams_user'@'%';
+  FLUSH PRIVILEGES;
+MYSQL
 
-    echo ">>> Opening firewall ports..."
-    systemctl enable firewalld
-    systemctl start firewalld
-    firewall-cmd --permanent --add-port=22/tcp
-    firewall-cmd --permanent --add-port=3306/tcp
-    firewall-cmd --permanent --add-port=80/tcp
-    firewall-cmd --permanent --add-port=443/tcp
-    firewall-cmd --reload
+  echo ">>> Step 8: Allow remote connections"
+  echo "[mysqld]
+  bind-address = 0.0.0.0" >> /etc/my.cnf
+  systemctl restart mysqld
 
-    echo ">>> MySQL 8 setup complete!"
-    mysql -uroot -p"${var.mysql_root_password}" -e "SELECT VERSION();"
-  EOF
-}
+  echo ">>> Step 9: Open ports"
+  systemctl enable firewalld
+  systemctl start firewalld
+  firewall-cmd --permanent --add-port=22/tcp
+  firewall-cmd --permanent --add-port=3306/tcp
+  firewall-cmd --reload
+
+  echo ">>> DONE — MySQL version:"
+  mysql -uroot -p"${var.mysql_root_password}" -e "SELECT VERSION();"
+EOF
 ```
 
 **`modules/mysql/outputs.tf`**
