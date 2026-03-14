@@ -250,3 +250,6 @@ gcloud compute ssh ams-vm-1 --zone=us-central1-a --project=ams-kap
 # Check open ports on the VM
 firewall-cmd --list-ports
 ```
+```bash
+CommandPurposeterraform initDownload providersterraform planPreview changesterraform applyCreate resourcesterraform destroyDelete everythinggcloud compute instances listVerify VMsgcloud compute networks listVerify VPC
+```
