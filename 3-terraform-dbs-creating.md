@@ -25,7 +25,7 @@ mkdir modules\postgres
 
 ---
 
-## Module 1 — MySQL 8.x
+### Module 1 — MySQL 8.x
 
 **`modules/mysql/variables.tf`**
 ```hcl
@@ -160,7 +160,7 @@ output "zone" {
 
 ---
 
-## Module 2 — PostgreSQL 16
+### Module 2 — PostgreSQL 16
 
 **`modules/postgres/variables.tf`**
 ```hcl
@@ -310,7 +310,7 @@ output "zone" {
 
 ---
 
-## Root `main.tf` — Call Both Modules
+### Root `main.tf` — Call Both Modules
 
 ```hcl
 provider "google" {
@@ -383,7 +383,7 @@ module "postgres_server" {
 
 ---
 
-## Root `outputs.tf`
+### Root `outputs.tf`
 
 ```hcl
 output "mysql_internal_ip" {
