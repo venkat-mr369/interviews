@@ -251,6 +251,13 @@ gcloud compute ssh ams-vm-1 --zone=us-central1-a --project=ams-kap
 firewall-cmd --list-ports
 ```
 
-```bash
-CommandPurposeterraform initDownload providersterraform planPreview changesterraform applyCreate resourcesterraform destroyDelete everythinggcloud compute instances listVerify VMsgcloud compute networks listVerify VPC
+```markdown
+| Command                          | Purpose              |
+|----------------------------------|----------------------|
+| `terraform init`                 | Download providers   |
+| `terraform plan`                 | Preview changes      |
+| `terraform apply`                | Create resources     |
+| `terraform destroy`              | Delete everything    |
+| `gcloud compute instances list`  | Verify VMs           |
+| `gcloud compute networks list`   | Verify VPC           |
 ```
