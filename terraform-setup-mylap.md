@@ -1,5 +1,7 @@
 ### Set up your Terraform project locally in VS Code
 
+#### Create Service Account in GCP Cloud ```deploy@ams-kap.iam.gserviceaccount.com```
+
 ### Step 1 — Open terminal in VS Code
 
 ```
